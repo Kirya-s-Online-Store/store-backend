@@ -1,7 +1,7 @@
-package com.online.controller;
+package com.online.store.controller;
 
 import com.google.gson.Gson;
-import com.online.model.Product;
+import com.online.store.model.Product;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
