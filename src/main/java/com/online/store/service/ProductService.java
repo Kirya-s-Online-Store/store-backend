@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductService implements CrudService<Product> {
 
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public Optional<Product> findById(int id) {

@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService implements CrudService<User> {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public Optional<User> findById(int id) {
