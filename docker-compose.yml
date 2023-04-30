@@ -7,9 +7,6 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    volumes:
-      - /docker-entrypoint-initdb.d
-      - ./:/var/lib/postgresql/data
     ports:
       - 5433:5432
     networks:
@@ -29,6 +26,9 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SQL_INIT_MODE=always
+      - SPRING_SQL_INIT_SCHEMA-LOCATIONS=classpath:sql/schema.sql
+      - SPRING_SQL_INIT_DATA-LOCATIONS=classpath:sql/data.sql
 
 networks:
   online-store-network:
