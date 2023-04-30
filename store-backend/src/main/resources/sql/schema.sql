@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS online_store;
 
-CREATE TABLE IF NOT EXISTS online_store.product
+CREATE TABLE IF NOT EXISTS online_store.products
 (
     id    SERIAL,
     name  varchar(100)     not null,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS online_store.product
     brand varchar(50)
 );
 
-CREATE TABLE IF NOT EXISTS online_store.user
+CREATE TABLE IF NOT EXISTS online_store.users
 (
     id       serial,
     username varchar(50) not null,
