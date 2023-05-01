@@ -1,6 +1,10 @@
 package com.online.store.service;
 
+import com.online.store.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.online.store.model.User;
 import com.online.store.service.api.CrudService;
@@ -39,4 +43,11 @@ public class UserService implements CrudService<User> {
     public User update(User user) {
         return userRepository.save(user);
     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = userRepository.findByEmail(username)
+//                .orElseThrow(() -> new UsernameNotFoundException("No user with such email"));
+//        return new UserDetailsImpl(user);
+//    }
 }
