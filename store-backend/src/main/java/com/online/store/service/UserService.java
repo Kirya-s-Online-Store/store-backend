@@ -1,11 +1,12 @@
 package com.online.store.service;
 
-import com.online.store.model.User;
-import com.online.store.repository.UserRepository;
-import com.online.store.service.api.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import com.online.store.model.User;
+import com.online.store.service.api.CrudService;
+import com.online.store.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service

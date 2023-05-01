@@ -2,7 +2,6 @@ package com.online.store.controller;
 
 import com.online.store.exception.UserNotFoundException;
 import com.online.store.model.User;
-import com.online.store.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.online.store.service.UserService;
+
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/users", produces = "application/json")
@@ -27,7 +29,7 @@ public class UserController {
     private final UserService userService;
 
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.findAll();
         return ResponseEntity.ok(users);

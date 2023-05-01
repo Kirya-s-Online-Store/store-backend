@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user", schema = "online_store")
+@Table(name = "users", schema = "online_store")
 public class User {
 
     @Id
@@ -23,5 +23,5 @@ public class User {
     private int id;
     private String username;
     private String email;
-    private boolean isAdmin;
+//    private boolean isAdmin;
 }
