@@ -11,9 +11,19 @@ CREATE TABLE IF NOT EXISTS online_store.products
 
 CREATE TABLE IF NOT EXISTS online_store.users
 (
-    id       SERIAL,
-    email    VARCHAR(50) UNIQUE NOT NULL CHECK (email ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    password VARCHAR(255)       NOT NULL,
-    role     VARCHAR(255)       NOT NULL,
-    address  VARCHAR(255)
+    id         BIGSERIAL PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name  VARCHAR(255) NOT NULl,
+    email      VARCHAR(50)  NOT NULL UNIQUE CHECK (email ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
+    password   VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS online_store.tokens
+(
+    id         BIGSERIAL PRIMARY KEY,
+    token      VARCHAR(255) NOT NULL UNIQUE,
+    token_type VARCHAR(63),
+    revoked    BOOLEAN,
+    expired    BOOLEAN,
+    user_id    BIGSERIAL REFERENCES social_network.users (id) ON DELETE CASCADE
 );

@@ -26,7 +26,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(ProductController.class);
     private final UserService userService;
 
 
