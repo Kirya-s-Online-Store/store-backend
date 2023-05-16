@@ -25,5 +25,5 @@ CREATE TABLE IF NOT EXISTS online_store.tokens
     token_type VARCHAR(63),
     revoked    BOOLEAN,
     expired    BOOLEAN,
-    user_id    BIGSERIAL REFERENCES social_network.users (id) ON DELETE CASCADE
+    user_id    BIGSERIAL REFERENCES online_store.users (id) ON DELETE CASCADE
 );
