@@ -1,7 +1,6 @@
 package com.online.store.service;
 
 import com.online.store.model.token.Token;
-import com.online.store.service.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +26,7 @@ public class LogoutService implements LogoutHandler {
             return;
         }
         jwt = authHeader.substring(7);
-        Token storedToken = tokenService.findByToken(jwt)
-                .orElse(null);
+        Token storedToken = tokenService.findByToken(jwt);
         if (storedToken != null) {
             storedToken.setExpired(true);
             storedToken.setRevoked(true);

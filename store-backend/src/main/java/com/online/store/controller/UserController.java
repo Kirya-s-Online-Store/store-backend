@@ -1,10 +1,8 @@
 package com.online.store.controller;
 
-import com.online.store.exception.UserNotFoundException;
 import com.online.store.model.User;
+import com.online.store.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.online.store.service.UserService;
 
 import java.net.URI;
 import java.util.List;
@@ -52,8 +48,8 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable String id) {
-        userService.deleteById(Integer.parseInt(id));
+    public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
+        userService.deleteById(id);
         return ResponseEntity.ok("Entity was deleted");
     }
 

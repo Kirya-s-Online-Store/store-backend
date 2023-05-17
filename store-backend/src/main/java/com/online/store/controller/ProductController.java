@@ -45,15 +45,17 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable String id) {
-        productService.deleteById(Integer.parseInt(id));
-        return ResponseEntity.ok("");
+    public ResponseEntity<Void> deleteProduct(@PathVariable Integer id) {
+        productService.deleteById(id);
+        return ResponseEntity
+                .noContent()
+                .build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable String id,
+    public ResponseEntity<Product> updateProduct(@PathVariable Integer id,
                                                  @RequestBody Product product) {
-        product.setId(Integer.parseInt(id));
+        product.setId(id);
         Product updatedProduct = productService.update(product);
         return ResponseEntity.ok(updatedProduct);
     }

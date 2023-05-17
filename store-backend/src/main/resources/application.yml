@@ -9,11 +9,6 @@ spring:
       mode: always
       schema-locations: classpath:sql/schema.sql
       data-locations: classpath:sql/data.sql
-#  jpa:
-#    defer-datasource-initialization: true
-#    properties:
-#      hibernate:
-#        globally_quoted_identifiers: true
 
 application:
   security:
