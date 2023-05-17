@@ -1,7 +1,6 @@
 package com.online.store.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.online.store.config.JwtService;
 import com.online.store.model.User;
 import com.online.store.model.token.Token;
 import com.online.store.model.token.TokenType;

@@ -1,5 +1,6 @@
-package com.online.store.config;
+package com.online.store.service;
 
+import com.online.store.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,8 +21,10 @@ public class JwtService {
 
     @Value("${application.security.jwt.secret-key}")
     private String secretKey;
+
     @Value("${application.security.jwt.expiration}")
     private long jwtExpiration;
+
     @Value("${application.security.jwt.refresh-token.expiration}")
     private long refreshExpiration;
 
@@ -29,16 +32,19 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", user.getId());
+        claims.put("role", user.getRole().name());
+        return generateToken(claims, user);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+    private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
 

@@ -1,4 +1,4 @@
-package com.online.store.config;
+package com.online.store.service;
 
 import com.online.store.model.token.Token;
 import com.online.store.service.TokenService;
