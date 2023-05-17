@@ -7,7 +7,7 @@ public interface CrudService<T> {
 
     List<T> findAll();
 
-    Optional<T> findById(int id);
+    T findById(int id);
 
     void deleteById(int id);
 

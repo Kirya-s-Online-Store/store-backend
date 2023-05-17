@@ -1,5 +1,6 @@
 package com.online.store.service;
 
+import com.online.store.exception.ProductNotFoundException;
 import com.online.store.model.Product;
 import com.online.store.repository.ProductRepository;
 import com.online.store.service.api.CrudService;
@@ -21,8 +22,9 @@ public class ProductService implements CrudService<Product> {
     }
 
     @Override
-    public Optional<Product> findById(int id) {
-        return productRepository.findById(id);
+    public Product findById(int id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product with such id not found"));
     }
 
     @Override

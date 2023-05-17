@@ -1,6 +1,7 @@
 package com.online.store.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.online.store.exception.UserNotRegisteredException;
 import com.online.store.model.User;
 import com.online.store.model.token.Token;
 import com.online.store.model.token.TokenType;
@@ -28,6 +29,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final ObjectMapper objectMapper;
 
     public AuthenticationResponse register(RegisterRequest request) {
         User user = User.builder()
@@ -48,14 +50,14 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        User user = userService.findByEmail(request.getEmail())
+                .orElseThrow(() -> new UserNotRegisteredException("User with such email not registered"));
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
         );
-        User user = userService.findByEmail(request.getEmail())
-                .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
@@ -107,7 +109,7 @@ public class AuthenticationService {
                         .accessToken(accessToken)
                         .refreshToken(refreshToken)
                         .build();
-                new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
+                objectMapper.writeValue(response.getOutputStream(), authResponse);
             }
         }
     }

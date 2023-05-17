@@ -1,14 +1,11 @@
 package com.online.store.service;
 
-import com.online.store.security.UserDetailsImpl;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import com.online.store.exception.UserNotFoundException;
 import com.online.store.model.User;
-import com.online.store.service.api.CrudService;
 import com.online.store.repository.UserRepository;
+import com.online.store.service.api.CrudService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -27,8 +24,9 @@ public class UserService implements CrudService<User> {
     }
 
     @Override
-    public Optional<User> findById(int id) {
-        return userRepository.findById(id);
+    public User findById(int id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with such id not found"));
     }
 
     @Override
