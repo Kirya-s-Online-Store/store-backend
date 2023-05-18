@@ -44,7 +44,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User content = userService.create(user);
         return ResponseEntity.ok()
-                .location(URI.create("/api/product/" + content.getId()))
+                .location(URI.create("/api/users/" + content.getId()))
                 .build();
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/api/brands")
 @RequiredArgsConstructor
@@ -28,6 +30,8 @@ public class BrandController {
     @PostMapping
     public ResponseEntity<Brand> create(@RequestBody Brand brand) {
         Brand createdBrand = brandService.create(brand);
-        return ResponseEntity.ok(createdBrand);
+        return ResponseEntity.ok()
+                .location(URI.create("/api/brands/" + createdBrand.getId()))
+                .body(createdBrand);
     }
 }

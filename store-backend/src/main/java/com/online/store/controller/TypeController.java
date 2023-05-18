@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping("/api/types")
 @RequiredArgsConstructor
@@ -36,6 +38,8 @@ public class TypeController {
     @PostMapping
     public ResponseEntity<Type> create(@RequestBody Type type) {
         Type createdType = typeService.create(type);
-        return ResponseEntity.ok(createdType);
+        return ResponseEntity.ok()
+                .location(URI.create("/api/types/" + createdType.getId()))
+                .body(createdType);
     }
 }
