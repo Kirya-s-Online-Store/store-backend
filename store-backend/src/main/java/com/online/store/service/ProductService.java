@@ -3,21 +3,21 @@ package com.online.store.service;
 import com.online.store.exception.ProductNotFoundException;
 import com.online.store.model.Product;
 import com.online.store.repository.ProductRepository;
-import com.online.store.service.api.CrudService;
+import com.online.store.service.api.CreateReadService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService implements CrudService<Product> {
+public class ProductService implements CreateReadService<Product> {
 
     private final ProductRepository productRepository;
 
     @Override
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public Page<Product> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     @Override
@@ -27,17 +27,7 @@ public class ProductService implements CrudService<Product> {
     }
 
     @Override
-    public void deleteById(int id) {
-        productRepository.deleteById(id);
-    }
-
-    @Override
     public Product create(Product entity) {
-        return productRepository.save(entity);
-    }
-
-    @Override
-    public Product update(Product entity) {
         return productRepository.save(entity);
     }
 }

@@ -18,12 +18,12 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users", schema = "online_store")
-public class User  implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +32,7 @@ public class User  implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+
     @Transient
     private Role role = Role.ROLE_USER;
 
