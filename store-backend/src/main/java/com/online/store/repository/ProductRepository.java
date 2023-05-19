@@ -15,11 +15,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>
 
     @Query("""
             SELECT p FROM Product p
-            LEFT JOIN p.info
-            LEFT JOIN p.type
-            LEFT JOIN p.brand
             WHERE (:brand_id IS NULL OR p.brand.id = :brand_id)
-            AND (:type_id IS NULL OR p.type.id = :type_id)
+            OR (:type_id IS NULL OR p.type.id = :type_id)
             """)
     Page<Product> findAllByBrandIdOrTypeId(@Param("brand_id") Integer brandId,
                                            @Param("type_id") Integer typeId,
