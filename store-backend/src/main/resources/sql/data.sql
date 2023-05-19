@@ -1,28 +1,166 @@
-insert into online_store.brands(name)
-values ('Apple');
-insert into online_store.brands(name)
-values ('Gucci');
-insert into online_store.brands(name)
-values ('Atlant');
-insert into online_store.brands(name)
-values ('Sportmaster');
+-- Inserting values into the "types" table
+INSERT INTO online_store.types (name)
+VALUES
+       ('Electronics'),
+       ('Clothing'),
+       ('Home Appliances'),
+       ('Books'),
+       ('Furniture'),
+       ('Beauty'),
+       ('Toys'),
+       ('Sports'),
+       ('Jewelry'),
+       ('Automotive'),
+       ('Health'),
+       ('Kitchen'),
+       ('Garden'),
+       ('Pets'),
+       ('Office'),
+       ('Music'),
+       ('Movies'),
+       ('Baby'),
+       ('Tools'),
+       ('Grocery'),
+       ('Shoes'),
+       ('Outdoor'),
+       ('Games'),
+       ('Watches'),
+       ('Electrical'),
+       ('Fitness'),
+       ('Crafts'),
+       ('Industrial'),
+       ('Collectibles'),
+       ('Travel'),
+       ('Food');
 
-insert into online_store.types(name)
-values ('wear');
-insert into online_store.types(name)
-values ('mobile');
-insert into online_store.types(name)
-values ('sport things');
+-- Inserting values into the "brands" table
+INSERT INTO online_store.brands (name)
+VALUES
+       ('Nike'),
+       ('Apple'),
+       ('Samsung'),
+       ('Adidas'),
+       ('Sony'),
+       ('Microsoft'),
+       ('LG'),
+       ('HP'),
+       ('Canon'),
+       ('Dell'),
+       ('Puma'),
+       ('Lenovo'),
+       ('Gucci'),
+       ('Amazon'),
+       ('Toshiba'),
+       ('Philips'),
+       ('Rolex'),
+       ('Nestle'),
+       ('Coca-Cola'),
+       ('Toyota'),
+       ('Honda'),
+       ('BMW'),
+       ('Intel'),
+       ('Asus'),
+       ('Nokia'),
+       ('GoPro'),
+       ('Sharp'),
+       ('Vans'),
+       ('Whirlpool'),
+       ('Panasonic');
 
+-- Inserting values into the "products" table
+INSERT INTO online_store.products (name, price, type_id, brand_id)
+VALUES
+       ('iPhone 12', 1099.99, 1, 2),
+       ('Samsung Galaxy S21', 899.99, 1, 3),
+       ('Nike Air Max', 129.99, 2, 1),
+       ('Sony PlayStation 5', 499.99, 9, 5),
+       ('Dell XPS 15', 1499.99, 1, 10),
+       ('Gucci Handbag', 1999.99, 6, 13),
+       ('Amazon Echo Dot', 49.99, 4, 14),
+       ('Canon EOS Rebel T7', 549.99, 9, 9),
+       ('Adidas Ultraboost', 179.99, 2, 4),
+       ('LG 55-Inch OLED TV', 1599.99, 1, 7),
+       ('Microsoft Surface Pro 7', 1299.99, 1, 6),
+       ('Rolex Submariner', 9999.99, 21, 17),
+       ('Nestle Coffee', 9.99, 20, 18),
+       ('Coca-Cola 12-Pack', 5.99, 20, 19),
+       ('Toyota Camry', 25999.99, 10, 20),
+       ('Nike Sportswear Hoodie', 59.99, 2, 1),
+       ('Honda Civic', 21999.99, 10, 21),
+       ('Puma RS-X Sneakers', 89.99, 2, 11),
+       ('HP Pavilion Laptop', 799.99, 1, 8),
+       ('Adidas Originals Superstar', 99.99, 2, 4),
+       ('Apple MacBook Pro', 1999.99, 1, 2),
+       ('Sony WH-1000XM4 Headphones', 349.99, 1, 5),
+       ('Gucci Sunglasses', 349.99, 6, 13),
+       ('Canon PowerShot G7 X Mark III', 699.99, 9, 9),
+       ('Microsoft Xbox Series X', 499.99, 9, 6),
+       ('LG 65-Inch 4K Smart TV', 1999.99, 1, 7),
+       ('Rolex Datejust', 7999.99, 21, 17),
+       ('Nokia 9 PureView', 599.99, 1, 25),
+       ('Adidas Essentials 3-Stripes Pants', 39.99, 2, 4),
+       ('HP OfficeJet Pro 9015', 299.99, 14, 8);
 
-insert into online_store.products(name, price, type_id, brand_id)
-values ('some name', 19.12, 1, 2);
+-- Inserting values into the "info_clauses" table
+INSERT INTO online_store.info_clauses (product_id, title, description)
+VALUES
+       (1, 'Display', '6.1-inch Super Retina XDR display'),
+       (1, 'Camera', '12MP dual-camera system'),
+       (2, 'Display', '6.2-inch Dynamic AMOLED 2X display'),
+       (2, 'Camera', '64MP triple-camera system'),
+       (3, 'Color', 'Black/White/Red'),
+       (3, 'Sole', 'Air cushioning'),
+       (4, 'Storage', '825GB SSD'),
+       (4, 'Resolution', '4K UHD Blu-ray compatible'),
+       (5, 'Display', '15.6-inch 4K UHD display'),
+       (5, 'Processor', '10th Gen Intel Core i7'),
+       (6, 'Material', 'Leather'),
+       (6, 'Color', 'Black/Gold'),
+       (7, 'Voice Assistant', 'Alexa built-in'),
+       (7, 'Connectivity', 'Bluetooth/Wi-Fi'),
+       (8, 'Sensor', '24.1MP APS-C CMOS sensor'),
+       (8, 'Lens', '18-55mm kit lens'),
+       (9, 'Color', 'White/Black'),
+       (9, 'Sole', 'Boost cushioning'),
+       (10, 'Screen Size', '55-inch'),
+       (10, 'Technology', 'OLED'),
+       (11, 'Processor', '10th Gen Intel Core i5'),
+       (11, 'Storage', '256GB SSD'),
+       (12, 'Material', 'Stainless steel'),
+       (12, 'Water Resistance', '300 meters'),
+       (13, 'Roast Level', 'Medium'),
+       (13, 'Ground or Whole Bean', 'Whole Bean'),
+       (14, 'Quantity', '12 cans'),
+       (14, 'Flavor', 'Original'),
+       (15, 'Color', 'White'),
+       (15, 'Engine', '2.5L 4-cylinder'),
+       (16, 'Color', 'Black/White'),
+       (16, 'Sole', 'Rubber'),
+       (17, 'Processor', '10th Gen Intel Core i7'),
+       (17, 'Memory', '16GB RAM'),
+       (18, 'Style', 'Classic'),
+       (18, 'Color', 'Black/White'),
+       (19, 'Screen Size', '13.3-inch Retina display'),
+       (19, 'Processor', 'M1 chip'),
+       (20, 'Color', 'Black'),
+       (20, 'Noise Cancellation', 'Active noise cancellation'),
+       (21, 'Material', 'Acetate'),
+       (21, 'Lens', 'Gray gradient'),
+       (22, 'Sensor', '20.1MP 1.0-inch stacked CMOS sensor'),
+       (22, 'Video Recording', '4K UHD'),
+       (23, 'Storage', '1TB SSD'),
+       (23, 'Resolution', '4K UHD Blu-ray compatible'),
+       (24, 'Screen Size', '65-inch'),
+       (24, 'Technology', '4K UHD'),
+       (25, 'Material', 'Stainless steel'),
+       (25, 'Water Resistance', '100 meters'),
+       (26, 'Color', 'Midnight Blue'),
+       (26, 'Display', '5.99-inch QHD+ pOLED display'),
+       (27, 'Color', 'White/Black'),
+       (27, 'Sole', 'Rubber'),
+       (28, 'Printer Type', 'All-in-One'),
+       (28, 'Connectivity', 'Ethernet/Wi-Fi/USB');
 
-insert into online_store.products(name, price, type_id, brand_id)
-values ('tutut', 19211.12, 2, 1);
-
-insert into online_store.products(name, price, type_id, brand_id)
-values ('t-shirt', 19412.112, 3, 4);
-
-insert into online_store.products(name, price, type_id, brand_id)
-values ('asdf', 1922222222.12, 1, 1);
+insert into online_store.users(first_name, last_name, email, password, role)
+values ('admin', 'admin', 'admin@gmail.com', '$2a$10$9n6HRSnd.H3Nq0HFiOw3FONwFAc6AM0VkUPvb3CHbzI.lp2edeJpC',
+        'ROLE_ADMIN');

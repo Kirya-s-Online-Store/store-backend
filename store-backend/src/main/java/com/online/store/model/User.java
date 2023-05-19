@@ -1,11 +1,11 @@
 package com.online.store.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
-    @Transient
+    @Enumerated
     private Role role = Role.ROLE_USER;
 
     @Override

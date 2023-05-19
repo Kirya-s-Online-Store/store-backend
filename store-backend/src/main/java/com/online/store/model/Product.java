@@ -2,6 +2,7 @@ package com.online.store.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,13 +43,10 @@ public class Product {
     private Brand brand;
 
     @OneToMany(
+            fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     @JoinColumn(name = "product_id")
     private List<InfoClause> info = new ArrayList<>();
-
-    public void addInfoClause(InfoClause infoClause) {
-        info.add(infoClause);
-    }
 }

@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS online_store.products;
 DROP TABLE IF EXISTS online_store.descriptions;
 DROP TABLE IF EXISTS online_store.types;
 DROP TABLE IF EXISTS online_store.brands;
+DROP TABLE IF EXISTS online_store.tokens;
+DROP TABLE IF EXISTS online_store.users;
 
 
 CREATE TABLE IF NOT EXISTS online_store.types
@@ -43,7 +45,8 @@ CREATE TABLE IF NOT EXISTS online_store.users
     first_name VARCHAR(255) NOT NULL,
     last_name  VARCHAR(255) NOT NULl,
     email      VARCHAR(50)  NOT NULL UNIQUE CHECK (email ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-    password   VARCHAR(255) NOT NULL
+    password   VARCHAR(255) NOT NULL,
+    role       VARCHAR(50)  NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS online_store.tokens
