@@ -21,8 +21,8 @@ public class ProductService {
     private final TypeService typeService;
     private final ModelMapper modelMapper;
 
-    public Page<Product> findAll(Pageable pageable) {
-        return productRepository.findAll(pageable);
+    public Page<Product> findAll(Integer brandId, Integer typeId, Pageable pageable) {
+        return productRepository.findAllByBrandIdOrTypeId(brandId, typeId, pageable);
     }
 
     public Product findById(int id) {

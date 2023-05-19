@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
@@ -24,8 +25,11 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public ResponseEntity<Page<Product>> getAllProducts(Pageable pageable) {
-        Page<Product> products = productService.findAll(pageable);
+    public ResponseEntity<Page<Product>> getAllProducts(
+            @RequestParam(name = "brand_id", required = false) Integer brandId,
+            @RequestParam(name = "type_id", required = false) Integer typeId,
+            Pageable pageable) {
+        Page<Product> products = productService.findAll(brandId, typeId, pageable);
         return ResponseEntity.ok(products);
     }
 
