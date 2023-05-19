@@ -1,15 +1,23 @@
 CREATE SCHEMA IF NOT EXISTS online_store;
 
+DROP TABLE IF EXISTS online_store.product_description;
+DROP TABLE IF EXISTS online_store.info_clauses;
+DROP TABLE IF EXISTS online_store.products;
+DROP TABLE IF EXISTS online_store.descriptions;
+DROP TABLE IF EXISTS online_store.types;
+DROP TABLE IF EXISTS online_store.brands;
+
+
 CREATE TABLE IF NOT EXISTS online_store.types
 (
     id   SERIAL PRIMARY KEY,
-    name VARCHAR(100) UNIQUE
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS online_store.brands
 (
     id   SERIAL PRIMARY KEY,
-    name VARCHAR(100) UNIQUE
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS online_store.products
@@ -19,6 +27,14 @@ CREATE TABLE IF NOT EXISTS online_store.products
     price    DOUBLE PRECISION NOT NULL,
     type_id  SERIAL           REFERENCES online_store.types (id) ON DELETE SET NULL,
     brand_id SERIAL           REFERENCES online_store.brands (id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS online_store.info_clauses
+(
+    id          SERIAL PRIMARY KEY,
+    product_id  SERIAL REFERENCES online_store.products (id) ON DELETE CASCADE,
+    title       VARCHAR(50)  NOT NULL,
+    description VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS online_store.users

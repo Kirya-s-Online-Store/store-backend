@@ -1,6 +1,7 @@
 package com.online.store.service;
 
 import com.online.store.model.Brand;
+import com.online.store.model.Product;
 import com.online.store.repository.BrandRepository;
 import com.online.store.service.api.CreateReadService;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,11 +25,17 @@ public class BrandService implements CreateReadService<Brand> {
     @Override
     public Brand findById(int id) {
         return brandRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Brand with such id not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Brand with id=" + id + " not found"));
     }
 
     @Override
     public Brand create(Brand entity) {
         return brandRepository.save(entity);
+    }
+
+    public void setBrandToProduct(Product product, int brandId) {
+        Brand brand = brandRepository.findById(brandId)
+                .orElseThrow(() -> new EntityNotFoundException("Brand with id=" + brandId + " not found"));
+        product.setBrand(brand);
     }
 }

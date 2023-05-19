@@ -6,9 +6,13 @@ spring:
     driver-class-name: org.postgresql.Driver
   sql:
     init:
-      mode: never
+      mode: always
       schema-locations: classpath:sql/schema.sql
       data-locations: classpath:sql/data.sql
+  jpa:
+    hibernate:
+      ddl-auto: none
+    defer-datasource-initialization: true
 
 application:
   security:
@@ -17,3 +21,7 @@ application:
       expiration: 86400000 # a day
       refresh-token:
         expiration: 604800000 # 7 days
+
+logging:
+  level:
+    org.hibernate.SQL: debug
