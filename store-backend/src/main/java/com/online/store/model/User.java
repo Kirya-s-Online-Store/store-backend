@@ -1,6 +1,7 @@
 package com.online.store.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Role role = Role.ROLE_USER;
 
     @Override
