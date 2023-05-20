@@ -12,6 +12,7 @@ import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.cloud.StorageClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
@@ -37,11 +38,13 @@ public class FirebaseService {
     private String uploadFile(File file, String fileName) throws IOException {
         BlobId blobId = BlobId.of("kiryas-online-store.appspot.com", fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/jpeg").build();
-        Resource resource = resourceLoader.getResource("classpath:firebaseService.json");
-        File firebaseService = resource.getFile();
-        FileInputStream fis = new FileInputStream(firebaseService);
+        ClassPathResource resource = new ClassPathResource("firebaseService.json");
+//        Resource resource = resourceLoader.getResource("classpath:");
+        InputStream inputStream = resource.getInputStream();
+//        File firebaseService = (File) inputStream;
+//        FileInputStream fis = new FileInputStream(firebaseService);
 
-        Credentials credentials = GoogleCredentials.fromStream(fis);
+        Credentials credentials = GoogleCredentials.fromStream(inputStream);
         Storage storage = StorageOptions.newBuilder()
                 .setCredentials(credentials)
                 .build()
