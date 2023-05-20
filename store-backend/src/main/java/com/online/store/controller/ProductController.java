@@ -59,12 +59,12 @@ public class ProductController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Product> uploadFile(
-            @RequestPart MultipartFile img,
-            @RequestPart String name,
-            @RequestPart Integer brandId,
-            @RequestPart Double price,
-            @RequestPart Integer typeId,
-            @RequestPart List<InfoClauseDTO> info
+            @RequestPart("img") MultipartFile img,
+            @RequestPart("name") String name,
+            @RequestPart("brandId") Integer brandId,
+            @RequestPart("price") Double price,
+            @RequestPart("typeId") Integer typeId,
+            @RequestPart("info") List<InfoClauseDTO> info
     ) {
         String photoLink = firebaseService.upload(img);
         ProductRequest request = ProductRequest.builder()
@@ -77,5 +77,5 @@ public class ProductController {
                 .build();
         Product createdProduct = productService.create(request);
         return ResponseEntity.ok(createdProduct);
-    }
 }
+    }
