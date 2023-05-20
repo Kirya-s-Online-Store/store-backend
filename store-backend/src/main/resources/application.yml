@@ -22,6 +22,10 @@ application:
       refresh-token:
         expiration: 604800000 # 7 days
 
+firebase:
+  credential:
+    path: firebaseService.json
+
 logging:
   level:
     org.hibernate.SQL: debug

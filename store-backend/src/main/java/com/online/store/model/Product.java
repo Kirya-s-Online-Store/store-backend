@@ -33,6 +33,7 @@ public class Product {
     private int id;
     private String name;
     private double price;
+    private String photoLink;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id")

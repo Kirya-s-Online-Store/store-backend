@@ -24,11 +24,12 @@ CREATE TABLE IF NOT EXISTS online_store.brands
 
 CREATE TABLE IF NOT EXISTS online_store.products
 (
-    id       SERIAL PRIMARY KEY,
-    name     VARCHAR(100)     NOT NULL,
-    price    DOUBLE PRECISION NOT NULL,
-    type_id  SERIAL           REFERENCES online_store.types (id) ON DELETE SET NULL,
-    brand_id SERIAL           REFERENCES online_store.brands (id) ON DELETE SET NULL
+    id         SERIAL PRIMARY KEY,
+    name       VARCHAR(100)     NOT NULL,
+    price      DOUBLE PRECISION NOT NULL,
+    type_id    SERIAL           REFERENCES online_store.types (id) ON DELETE SET NULL,
+    brand_id   SERIAL           REFERENCES online_store.brands (id) ON DELETE SET NULL,
+    photo_link VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS online_store.info_clauses
