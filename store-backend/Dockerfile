@@ -1,5 +1,6 @@
 FROM gradle AS build
 COPY --chown=gradle:gradle . /home/gradle/src
+# COPY src/main/resources/firebaseService.json /app/firebaseService.json
 WORKDIR /home/gradle/src
 RUN gradle build -x test --no-daemon
 
